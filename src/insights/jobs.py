@@ -20,8 +20,10 @@ def read(path: str) -> List[Dict]:
 
     with open(path) as data_file:
         data_list = csv.reader(data_file)
-        return data_list
-    raise NotImplementedError
+    
+    
+    return data_list
+
 
 
 def get_unique_job_types(path: str) -> List[str]:

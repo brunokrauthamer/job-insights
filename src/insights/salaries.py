@@ -1,4 +1,27 @@
 from typing import Union, List, Dict
+import csv
+
+
+def read(path: str) -> List[Dict]:
+    """Reads a file from a given path and returns its contents
+
+    Parameters
+    ----------
+    path : str
+        Full path to file
+
+    Returns
+    -------
+    list
+        List of rows as dicts
+    """
+    with open(path) as data_file:
+        data_list = csv.DictReader(data_file)
+        data = []
+        for d in data_list:
+            data.append(d)
+
+    return data
 
 
 def get_max_salary(path: str) -> int:
@@ -16,7 +39,14 @@ def get_max_salary(path: str) -> int:
     int
         The maximum salary paid out of all job opportunities
     """
-    raise NotImplementedError
+    data = read(path)
+    max_salary = set()
+    for d in data:
+        if d["max_salary"] != 'invalid' and d["max_salary"] != '':
+            max_salary.add(int(d["max_salary"]))
+    list_max_salary = list(max_salary)
+    list_max_salary.sort()
+    return list_max_salary[-1]
 
 
 def get_min_salary(path: str) -> int:

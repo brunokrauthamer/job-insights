@@ -71,7 +71,7 @@ def get_min_salary(path: str) -> int:
             min_salary.add(int(d["min_salary"]))
     list_min_salary = list(min_salary)
     list_min_salary.sort()
-    return list_min_salary[-1]
+    return list_min_salary[0]
 
 
 def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:

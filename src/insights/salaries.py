@@ -130,4 +130,22 @@ def filter_by_salary_range(
     list
         Jobs whose salary range contains `salary`
     """
-    raise NotImplementedError
+    valid_jobs = []
+    for job in jobs:
+        try:
+            int(job["min_salary"])
+            int(job["max_salary"])
+        except:
+            print("min or max salaries invalid")
+        else:
+            if int(job["min_salary"]) <= int(job["max_salary"]):
+                valid_jobs.append(job)
+    
+    answer_jobs = []
+    
+    for job in valid_jobs:
+        if matches_salary_range(job, salary):
+            answer_jobs.append(job)
+    
+    return answer_jobs
+
